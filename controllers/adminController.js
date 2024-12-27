@@ -2,7 +2,7 @@ const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 
 exports.loginPage = (req, res) => {
-    res.render('login');
+    res.render('login', { errorMessage: null });
 };
 
 exports.login = async (req, res) => {
@@ -21,7 +21,7 @@ exports.login = async (req, res) => {
         return res.redirect('/admin/dashboard');
     }
 
-    res.status(401).send('Invalid username or password');
+    return res.render('login', { errorMessage: 'Invalid username or password!' });
 };
 
 exports.dashboard = (req, res) => {
