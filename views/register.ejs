@@ -30,7 +30,19 @@
     <div class="card shadow-lg">
         <div class="card-body">
             <h3 class="card-title text-center mb-4">REGISTER</h3>
-            <form action="/admin/register" method="POST">
+            <% if (successMessage) { %>
+                <div class="alert alert-success" role="alert">
+                    <%= successMessage %>
+                </div>
+            <% } %>
+
+            <!-- Error Message -->
+            <% if (errorMessage) { %>
+                <div class="alert alert-danger" role="alert">
+                    <%= errorMessage %>
+                </div>
+            <% } %>
+            <form action="/auth/register" method="POST">
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
                     <input 

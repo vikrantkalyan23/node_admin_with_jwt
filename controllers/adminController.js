@@ -6,13 +6,13 @@ exports.loginPage = (req, res) => {
 };
 
 exports.login = async (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
-    if (!username || !password) {
-        return res.status(400).send('All fields are required');
+    if (!email || !password) {
+        return res.render('login', { errorMessage: 'All fields are required' });
     }
 
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ email });
     if (user && (await user.matchPassword(password))) {
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
             expiresIn: '1h',

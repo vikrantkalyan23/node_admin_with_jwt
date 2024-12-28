@@ -11,38 +11,9 @@ router.get('/logout', logout);
 
 
 router.get('/register', (req, res) => {
-    res.render('register');
+    res.render('register', { errorMessage: null, successMessage: null });
 });
 
-// Handle Registration Submission
-router.post('/register', async (req, res) => {
-    const { name, email, password } = req.body;
-
-    try {
-        // Check if the user already exists
-        const existingUser = await User.findOne({ email });
-        if (existingUser) {
-            return res.render('register', { errorMessage: 'Email already registered!' });
-        }
-
-        // Hash the password
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        // Create new user
-        const newUser = new User({
-            name,
-            email,
-            password: hashedPassword,
-        });
-
-        await newUser.save();
-
-        res.redirect('/login'); // Redirect to login page after successful registration
-    } catch (error) {
-        console.error(error);
-        res.render('register', { errorMessage: 'Something went wrong. Please try again.' });
-    }
-});
 
 router.get('/news', (req, res) => {
     res.render('news');
