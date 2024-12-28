@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const adminRoutes = require('./routes/adminRoutes');
-const authRoutes = require('./routes/auth'); 
+const registerRoutes = require('./routes/registerRoutes'); 
 
 dotenv.config();
 
@@ -24,7 +24,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 
 // Routes
 app.use('/admin', adminRoutes);
-app.use('/auth', authRoutes);
+app.use('/auth', registerRoutes);
 // Start Server
 app.listen(process.env.PORT, () => {
     console.log(`Server running at http://localhost:${process.env.PORT}/admin`);

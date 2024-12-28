@@ -5,7 +5,7 @@ Admin panel in Node.js with MongoDB, EJS, and JWT
 
 npm init -y
 
-npm install express mongoose dotenv ejs bcryptjs jsonwebtoken cookie-parser express-session body-parser
+npm install express mongoose dotenv ejs bcryptjs jsonwebtoken cookie-parser express-session body-parser bcrypt
 
 # Run the Application
 
